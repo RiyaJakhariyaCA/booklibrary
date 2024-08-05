@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { SIGNUP_URL } from '../constants.js';
-import { useAuth } from './AuthContext'; // AuthContext'i içe aktar
+import { useAuth } from './AuthContext';
 
 function SignUp() {
     const [firstName, setFirstName] = useState('');
@@ -12,17 +12,17 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const { login } = useAuth(); // Context'ten login fonksiyonunu al
+    const { login } = useAuth(); 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post(SIGNUP_URL, { firstName, lastName, email, password });
             console.log(response);
-            localStorage.setItem('token', response.data.token); // Token'ı localStorage'a kaydet
-            login(); // Kullanıcıyı login yap
+            localStorage.setItem('token', response.data.token);
+            login();
             setMessage(response.data.message);
-            setTimeout(() => navigate('/booklibrary'), 2000); // Redirect to home after 2 seconds
+            setTimeout(() => navigate('/booklibrary'), 2000);
         } catch (error) {
             setMessage(error.response.data.message);
         }

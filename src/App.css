@@ -378,19 +378,21 @@ footer {
   color: #d9534f; /* Red color for error messages */
 }
 .logout-button {
-  background-color: transparent; /* Transparent background */
-  color: #ffffff; /* White text color */
-  border: 1px solid #ffffff; /* White border */
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff; /* White text color for contrast */
+  font-size: 1em; /* Medium size */
+  font-weight: bold;
+  padding: 10px 20px; /* Adjusted padding for a medium size */
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-  margin: 0 12px; /* Spacing similar to other links */
+  margin: 0 12px; /* Spacing between navigation links */
+  background-color: transparent; /* Transparent background */
+  border: none;
+  cursor: pointer;
 }
 
 .logout-button:hover {
-  background-color: #333; /* Dark background on hover */
+  background-color: #333; /* Dark background on hover for better contrast */
   color: #e6e6e6; /* Light gray text color on hover */
 }
 

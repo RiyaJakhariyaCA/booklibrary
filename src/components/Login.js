@@ -3,22 +3,22 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { LOGIN_URL } from '../constants.js';
-import { useAuth } from './AuthContext'; // AuthContext'i içe aktar
+import { useAuth } from './AuthContext'; 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const { login } = useAuth(); // Context'ten login fonksiyonunu al
+    const { login } = useAuth();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await axios.post(LOGIN_URL, { email, password });
             localStorage.setItem('token', response.data.token);
-            login(); // Kullanıcıyı login yap
-            navigate('/booklibrary'); // Giriş yaptıktan sonra yönlendir
+            login();
+            navigate('/booklibrary');
         } catch (error) {
             setMessage(error.response.data.message);
         }

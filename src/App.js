@@ -6,12 +6,12 @@ import SearchBook from './components/SearchBook';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import EditBook from './components/EditBook';
-import { AuthProvider, useAuth } from './components/AuthContext'; // AuthContext'i içe aktar
-import './App.css'; // Import the CSS file
+import { AuthProvider, useAuth } from './components/AuthContext';
+import './App.css';
 
 function App() {
     return (
-        <AuthProvider> {/* AuthProvider'ı ekleyin */}
+        <AuthProvider>
             <Router>
                 <div>
                     <header>
@@ -20,9 +20,9 @@ function App() {
                         </div>
                         <nav>
                             <Link to="/booklibrary">Home</Link>
-                            <Link to="/add">Add</Link>
-                            <Link to="/search">Search</Link>
-                            <AuthLinks /> {/* AuthLinks */}
+                            <ProtectedLink to="/add">Add</ProtectedLink>
+                            <ProtectedLink to="/search">Search</ProtectedLink>
+                            <AuthLinks />
                         </nav>
                     </header>
                     <main>
@@ -44,7 +44,6 @@ function App() {
     );
 }
 
-// Login ve SignUp linklerini gösterecek ya da gizleyecek bir bileşen
 function AuthLinks() {
     const { isAuthenticated, logout } = useAuth();
 
@@ -56,6 +55,11 @@ function AuthLinks() {
             <Link to="/login">Login</Link>
         </>
     );
+}
+
+function ProtectedLink({ to, children }) {
+    const { isAuthenticated } = useAuth();
+    return isAuthenticated ? <Link to={to}>{children}</Link> : null;
 }
 
 export default App;
